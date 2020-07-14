@@ -1,19 +1,23 @@
 # webarserker-typescrpit-axios
-使用typescript重构axios，深入的学习typescript语法，并且完整解析axios前端部分
-# Specification
+使用typescript重构axios，深入的学习typescript语法，并且完整解析axios前端部分,包涵测试代码，并且通过单元测试
+# 学习的想法和感受
+axios 熟悉的陌生人，天天用，天天踩坑，才知道里面玄机有多大
+> 拦截器，请求头，[CSRF攻击与防御](https://www.cnblogs.com/yulia/p/10347691.html),test测试等等，关于CSRF可以去收看[X调查](https://www.bilibili.com/video/BV1TT4y1E7KF?from=search&seid=17674863590970169699) 孟买黑客用邮件如何转账8000万美金
 
-A compliant README must satisfy all the requirements listed below.
+黄奕老师的代码功力十分深厚，从头到尾跟着走完啧啧称奇，每一行代码基本脱落小白编程感觉，完全类似于由结果反推实现，像电影降临的高纬度外星人一样。先是从脑子里出现框架架构，然后不急不缓写出代码，本人尝试过这样写，但是代码最后测试时终归会遇到问题，可能是自己纯度还不够，代码量还不足，无法做到黄老师轻松完成的事情，这也许是编程大牛和中级程序员的区别之一。
 
-> Note: Standard Readme is designed for open source libraries. Although it's [historically](README.md#background) made for Node and npm projects, it also applies to libraries in other languages and package managers.
+> 做事情的时候，肯定会遇到困难，事情越有价值，困难就越具规模。遇到困难的时候，心平气和地面对就好，因为这只不过是生活常态。《把时间当作朋友》 李笑来
 
-**Requirements:**
-  - Be called README.md (with capitalization).
-  - If the project supports i18n, the file must be named accordingly: `README.de.md`, where `de` is the BCP 47 Language tag. For naming, prioritize non-regional subtags for languages. If there is only one README and the language is not English, then a different language in the text is permissible without needing to to specify the BCP tag: e.g., `README.md` can be in German if there is no `README.md` in another language. Where there are multiple languages, `README.md` is reserved for English.
-  - Be a valid Markdown file.
-  - Sections must appear in order given below. Optional sections may be omitted.
-  - Sections must have the titles listed below, unless otherwise specified. If the README is in another language, the titles must be translated into that language.
-  - Must not contain broken links.
-  - If there are code examples, they should be linted in the same way as the code is linted in the rest of the project.
+**代码编写时解决的bug:**
+  无数bug等着，老师的代码可以，你的却不行，自己写的优化也很多，这个[Axios](src/core.Axios.ts)的[_requestMethodWithoutData](src/core.Axios.ts)也是再三权衡为之，应为merage出来的参数变量和预期不符
+  最后的发布，各种报错缠身，包括
+    - [rollup](https://stackoverflow.com/questions/57943277/rollup-generates-node-resolve-plugin-typeerror-cannot-read-property-preserve)
+      > rollup 安装时版本号对应不上，最新更新的npm包和最后更新的npm包产生差异化，建议初始化项目时，提交一版源码到GitHub备份，后续出现代码编译或者打包问题，直接从github pull代码到本地作为沙箱，然后单独测试打包，版本号等等
+    - [rollup](https://github.com/Polymer/tools/issues/757)
+      > npm包内引用文件错误，rollup会优先寻找并且引用你引用的所有js文件，大型计算机CI 64GB运行内容可以做到这点，设置过include，但是效果作用不大，本人电脑[I7 7700HQ 16GB 1070TI 8GB]无法编译完成。解决手段可以直接删除node_modules 文件夹，从新下载备份到GitHub的文件后，只安装初始化时的依赖，保证打包正常然后发布即可，本地只保留初始化文件，这样就回避rollup的遍历项目。
+    - [jasmine] [jest] 测试代码报错
+      > 尝试删除本地的 jasmine 重新安装对应版本的代码
+
 
 ## Table of Contents
 
@@ -37,206 +41,3 @@ _Note: This is only a navigation guide for the specification, and does not defin
   - [Contributing](#contributing)
   - [License](#license)
 - [Definitions](#definitions)
-
-## Sections
-
-### Title
-**Status:** Required.
-
-**Requirements:**
-- Title must match repository, folder and package manager names - or it may have another, relevant title with the repository, folder, and package manager title next to it in italics and in parentheses. For instance:
-
-  ```markdown
-  # Standard Readme Style _(standard-readme)_
-  ```
-
-  If any of the folder, repository, or package manager names do not match, there must be a note in the [Long Description](#long-description) explaining why.
-
-**Suggestions:**
-- Should be self-evident.
-
-### Banner
-**Status:** Optional.
-
-**Requirements:**
-- Must not have its own title.
-- Must link to local image in current repository.
-- Must appear directly after the title.
-
-### Badges
-**Status:** Optional.
-
-**Requirements:**
-- Must not have its own title.
-- Must be newline delimited.
-
-**Suggestions:**
-- Use http://shields.io or a similar service to create and host the images.
-- Add the [Standard Readme badge](https://github.com/RichardLitt/standard-readme#badge).
-
-### Short Description
-**Status:** Required.
-
-**Requirements:**
-- Must not have its own title.
-- Must be less than 120 characters.
-- Must not start with `> `
-- Must be on its own line.
-- Must match the description in the packager manager's `description` field.
-- Must match GitHub's description (if on GitHub).
-
-**Suggestions:**
-- Use [gh-description](https://github.com/RichardLitt/gh-description) to set and get GitHub description.
-- Use `npm show . description` to show the description from a local [npm](https://npmjs.com) package.
-
-### Long Description
-**Status:** Optional.
-
-**Requirements:**
-- Must not have its own title.
-- If any of the folder, repository, or package manager names do not match, there must be a note here as to why. See [Title section](#title).
-
-**Suggestions:**
-- If too long, consider moving to the [Background](#background) section.
-- Cover the main reasons for building the repository.
-- "This should describe your module in broad terms,
-generally in just a few paragraphs; more detail of the module's
-routines or methods, lengthy code examples, or other in-depth
-material should be given in subsequent sections.
-
-  Ideally, someone who's slightly familiar with your module should be
-able to refresh their memory without hitting "page down". As your
-reader continues through the document, they should receive a
-progressively greater amount of knowledge."
-
-  ~ [Kirrily "Skud" Robert, perlmodstyle](http://perldoc.perl.org/perlmodstyle.html)
-
-### Table of Contents
-**Status:** Required; optional for READMEs shorter than 100 lines.
-
-**Requirements:**
-- Must link to all Markdown sections in the file.
-- Must start with the next section; do not include the title or Table of Contents headings.
-- Must be at least one-depth: must capture all `##` headings.
-
-**Suggestions:**
-- May capture third and fourth depth headings. If it is a long ToC, these are optional.
-
-### Security
-**Status**: Optional.
-
-**Requirements:**
-- May go here if it is important to highlight security concerns. Otherwise, it should be in [Extra Sections](#extra-sections).
-
-### Background
-**Status:** Optional.
-
-**Requirements:**
-- Cover motivation.
-- Cover abstract dependencies.
-- Cover intellectual provenance: A `See Also` section is also fitting.
-
-### Install
-**Status:** Required by default, optional for [documentation repositories](#definitions).
-
-**Requirements:**
-- Code block illustrating how to install.
-
-**Subsections:**
-- `Dependencies`. Required if there are unusual dependencies or dependencies that must be manually installed.
-
-**Suggestions:**
-- Link to prerequisite sites for programming language: [npmjs](https://npmjs.com), [godocs](https://godoc.org), etc.
-- Include any system-specific information needed for installation.
-- An `Updating` section would be useful for most packages, if there are multiple versions which the user may interface with.
-
-### Usage
-**Status:** Required by default, optional for [documentation repositories](#definitions).
-
-**Requirements:**
-- Code block illustrating common usage.
-- If CLI compatible, code block indicating common usage.
-- If importable, code block indicating both import functionality and usage.
-
-**Subsections:**
-- `CLI`. Required if CLI functionality exists.
-
-**Suggestions:**
-- Cover basic choices that may affect usage: for instance, if JavaScript, cover promises/callbacks, ES6 here.
-- If relevant, point to a runnable file for the usage code.
-
-### Extra Sections
-**Status**: Optional.
-
-**Requirements:**
-- None.
-
-**Suggestions:**
-- This should not be called `Extra Sections`. This is a space for 0 or more sections to be included, each of which must have their own titles.
-- This should contain any other sections that are relevant, placed after [Usage](#usage) and before [API](#api).
-- Specifically, the [Security](#security) section should be here if it wasn't important enough to be placed above.
-
-### API
-**Status:** Optional.
-
-**Requirements:**
-- Describe exported functions and objects.
-
-**Suggestions:**
-- Describe signatures, return types, callbacks, and events.
-- Cover types covered where not obvious.
-- Describe caveats.
-- If using an external API generator (like go-doc, js-doc, or so on), point to an external `API.md` file. This can be the only item in the section, if present.
-
-### Maintainer(s)
-**Status**: Optional.
-
-**Requirements:**
-- Must be called `Maintainer` or `Maintainers`.
-- List maintainer(s) for a repository, along with one way of contacting them (e.g. GitHub link or email).
-
-**Suggestions:**
-- This should be a small list of people in charge of the repo. This should not be everyone with access rights, such as an entire organization, but the people who should be pinged and who are in charge of the direction and maintenance of the repository.
-- Listing past maintainers is good for attribution, and kind.
-
-### Thanks
-**Status**: Optional.
-
-**Requirements:**
-- Must be called `Thanks`, `Credits` or `Acknowledgements`.
-
-**Suggestions:**
-- State anyone or anything that significantly helped with the development of your project.
-- State public contact hyper-links if applicable.
-
-### Contributing
-**Status**: Required.
-
-**Requirements:**
-- State where users can ask questions.
-- State whether PRs are accepted.
-- List any requirements for contributing; for instance, having a sign-off on commits.
-
-**Suggestions:**
-- Link to a CONTRIBUTING file -- if there is one.
-- Be as friendly as possible.
-- Link to the GitHub issues.
-- Link to a Code of Conduct. A CoC is often in the Contributing section or document, or set elsewhere for an entire organization, so it may not be necessary to include the entire file in each repository. However, it is highly recommended to always link to the code, wherever it lives.
-- A subsection for listing contributors is also welcome here.
-
-### License
-**Status:** Required.
-
-**Requirements:**
-- State license full name or identifier, as listed on the  [SPDX](https://spdx.org/licenses/) license list. For unlicensed repositories, add `UNLICENSED`. For more details, add `SEE LICENSE IN <filename>` and link to the license file. (These requirements were adapted from [npm](https://docs.npmjs.com/files/package.json#license)).
-- State license owner.
-- Must be last section.
-
-**Suggestions:**
-- Link to longer License file in local repository.
-
-## Definitions
-
-_These definitions are provided to clarify any terms used above._
-
-- **Documentation repositories**: Repositories without any functional code. For instance, [RichardLitt/knowledge](https://github.com/RichardLitt/knowledge).
