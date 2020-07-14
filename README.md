@@ -18,11 +18,28 @@ axios 熟悉的陌生人，天天用，天天踩坑，才知道里面玄机有�
 > 尝试删除本地的 jasmine 重新安装对应版本的代码
 
 
-## Table of Contents
+## 项目构成
 
-_Note: This is only a navigation guide for the specification, and does not define or mandate terms for any specification-compliant documents._
+_看再多的书是学不全脚本的，要多实践_
 
-- [Sections](#sections)
+- [examples](#examples)
+  - [base](#examples/base)
+  - [cancel](#examples/cancel)
+  - [config](#examples/config)
+  - [error](#examples/error)
+  - [extend](#examples/extend)
+  - [interceptor](#examples/interceptor)
+  - [more](#examples/more)
+  - [simple](#examples/simple)
+  - [global](#examples/global.css)
+  - [index](#examples/index.html)
+  - [server](#examples/server.js)
+  - [server2](#examples/server2.js)
+  - [webpack.config](#examples/webpack.config.js)
+- [src](#src)
+
+
+<!-- - [examples](#examples)
   - [Title](#title)
   - [Banner](#banner)
   - [Badges](#badges)
@@ -39,4 +56,4 @@ _Note: This is only a navigation guide for the specification, and does not defin
   - [Thanks](#thanks)
   - [Contributing](#contributing)
   - [License](#license)
-- [Definitions](#definitions)
+- [Definitions](#definitions) -->
