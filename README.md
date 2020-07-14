@@ -1,5 +1,6 @@
 # webarserker-typescrpit-axios
-使用typescript重构axios，深入的学习typescript语法，并且完整解析axios前端部分,包涵测试代码，并且通过单元测试
+使用typescript重构axios，深入的学习typescript语法，并且完整解析axios前端部分,包涵测试代码，并且通过单元测试.
+> [电子书地址](http://www.valleylmh.vip/chapter12/build-deploy.html#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
 # 学习的想法和感受
 axios 熟悉的陌生人，天天用，天天踩坑，才知道里面玄机有多大
 > 拦截器，请求头，[CSRF攻击与防御](https://www.cnblogs.com/yulia/p/10347691.html),test测试等等，关于CSRF可以去收看[X调查-孟买黑客用邮件如何转账8000万美金](https://www.bilibili.com/video/BV1TT4y1E7KF?from=search&seid=17674863590970169699) 
@@ -14,6 +15,8 @@ axios 熟悉的陌生人，天天用，天天踩坑，才知道里面玄机有�
 > rollup 安装时版本号对应不上，最新更新的npm包和最后更新的npm包产生差异化，建议初始化项目时，提交一版源码到GitHub备份，后续出现代码编译或者打包问题，直接从github pull代码到本地作为沙箱，然后单独测试打包，版本号等等
 - [rollup](https://github.com/Polymer/tools/issues/757)
 > npm包内引用文件错误，rollup会优先寻找并且引用你引用的所有js文件，大型计算机CI 64GB运行内容可以做到这点，设置过include，但是效果作用不大，本人电脑[I7 7700HQ 16GB 1070TI 8GB]无法编译完成。解决手段可以直接删除node_modules 文件夹，从新下载备份到GitHub的文件后，只安装初始化时的依赖，保证打包正常然后发布即可，本地只保留初始化文件，这样就回避rollup的遍历项目。
+- [test](https://github.com/facebook/jest/issues/6664)
+> document is not defined
 - [jasmine] [jest] 测试代码报错
 > 尝试删除本地的 jasmine 重新安装对应版本的代码
 
