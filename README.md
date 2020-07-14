@@ -22,8 +22,8 @@ axios 熟悉的陌生人，天天用，天天踩坑，才知道里面玄机有�
 
 _看再多的书是学不全脚本的，要多实践_
 
-- [examples](#examples)
-  - [base](#examples/base)
+- [examples](examples)
+  - [base](examples/base)
   - [cancel](#examples/cancel)
   - [config](#examples/config)
   - [error](#examples/error)
